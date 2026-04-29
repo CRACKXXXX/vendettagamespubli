@@ -361,23 +361,23 @@ body {
 /* Subtítulo */
 #subtitle-pre {
   font-family: 'Cinzel', serif;
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 8px;
-  color: #b33030;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 10px;
+  color: #c93a3a;
   text-transform: uppercase;
-  margin-bottom: 8px;
-  text-shadow: 0 0 22px rgba(139, 26, 26, 0.8), 0 0 40px rgba(139, 26, 26, 0.4);
+  margin-bottom: 12px;
+  text-shadow: 0 0 24px rgba(180, 40, 40, 0.9), 0 0 50px rgba(180, 40, 40, 0.5);
   animation: fadeIn 1.2s ease 0.3s both;
 }
 
 /* Título principal */
 #title-main {
   font-family: 'Cinzel Decorative', serif;
-  font-size: 110px;
+  font-size: 135px;
   font-weight: 700;
   line-height: 1;
-  letter-spacing: 10px;
+  letter-spacing: 12px;
   text-transform: uppercase;
   /* Shimmer sutil sobre el texto */
   background: linear-gradient(120deg,
@@ -401,13 +401,14 @@ body {
 /* Número romano (ahora inline dentro del título) */
 #title-roman {
   font-family: 'Cinzel Decorative', serif;
-  font-size: 110px;
+  font-size: 140px;
   font-weight: 700;
   letter-spacing: 10px;
+  margin-left: 15px;
   /* Romper el background-clip del padre para tener color propio */
-  -webkit-text-fill-color: #b33030;
+  -webkit-text-fill-color: #c93a3a;
   text-shadow: none;
-  filter: drop-shadow(0 0 30px rgba(139, 26, 26, 0.7)) drop-shadow(0 0 60px rgba(139, 26, 26, 0.3));
+  filter: drop-shadow(0 0 35px rgba(180, 40, 40, 0.8)) drop-shadow(0 0 70px rgba(180, 40, 40, 0.4));
 }
 
 /* Premio */
@@ -421,21 +422,22 @@ body {
 }
 
 #prize-label {
-  font-size: 16px;
-  letter-spacing: 6px;
-  color: #9a9080;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 8px;
+  color: #a8a090;
   text-transform: uppercase;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
 #prize-amount {
   font-family: 'Cinzel', serif;
-  font-size: 66px;
+  font-size: 100px;
   font-weight: 900;
-  letter-spacing: 4px;
-  color: #d4b855;
+  letter-spacing: 5px;
+  color: #ebd06a;
   line-height: 1;
-  text-shadow: 0 0 20px rgba(200, 168, 75, 0.6), 0 0 40px rgba(200, 168, 75, 0.3);
+  text-shadow: 0 0 25px rgba(235, 208, 106, 0.7), 0 0 50px rgba(235, 208, 106, 0.4);
   animation: gold-pulse 4s ease-in-out infinite;
 }
 
@@ -459,29 +461,29 @@ body {
 }
 
 #location-text {
-  font-size: 22px;
+  font-size: 32px;
   font-weight: 700;
-  letter-spacing: 5px;
-  color: #e8ddd0;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.5);
+  letter-spacing: 6px;
+  color: #f5efe6;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 0 25px rgba(0, 0, 0, 0.7);
   text-transform: uppercase;
 }
 
 #slots-text {
   display: inline-block;
-  font-size: 24px;
+  font-size: 38px;
   font-weight: 900;
-  letter-spacing: 5px;
-  color: #d4b855;
+  letter-spacing: 6px;
+  color: #ebd06a;
   text-shadow:
-    0 0 22px rgba(200, 168, 75, 0.9),
-    0 0 44px rgba(200, 168, 75, 0.5),
-    0 2px 0 rgba(0, 0, 0, 0.9);
+    0 0 28px rgba(235, 208, 106, 0.9),
+    0 0 55px rgba(235, 208, 106, 0.6),
+    0 3px 0 rgba(0, 0, 0, 0.9);
   text-transform: uppercase;
-  margin-top: 10px;
-  padding: 10px 36px;
-  border: 1px solid rgba(200, 168, 75, 0.45);
-  background: rgba(200, 168, 75, 0.08);
+  margin-top: 14px;
+  padding: 12px 42px;
+  border: 1px solid rgba(235, 208, 106, 0.5);
+  background: rgba(235, 208, 106, 0.1);
   animation: slots-pulse 3.5s ease-in-out infinite;
 }
 
@@ -494,11 +496,12 @@ body {
 }
 
 #countdown-title {
-  font-size: 15px;
-  letter-spacing: 7px;
-  color: #7a7065;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 8px;
+  color: #9a9085;
   text-transform: uppercase;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
 #countdown {
@@ -517,15 +520,15 @@ body {
 
 .time-value {
   font-family: 'Cinzel', serif;
-  font-size: 90px;
+  font-size: 130px;
   font-weight: 900;
   line-height: 1;
-  color: #fff5e8;
-  letter-spacing: 2px;
+  color: #ffffff;
+  letter-spacing: 3px;
   text-shadow:
-    0 0 30px rgba(255, 255, 255, 0.12),
-    0 0 60px rgba(255, 255, 255, 0.04),
-    2px 2px 0 #1a0a0a;
+    0 0 35px rgba(255, 255, 255, 0.2),
+    0 0 70px rgba(255, 255, 255, 0.1),
+    3px 3px 0 #1a0a0a;
   display: inline-block;
   /* El JS añade la clase flip cuando cambia */
 }
@@ -535,29 +538,31 @@ body {
 }
 
 .time-label {
-  font-size: 10px;
-  letter-spacing: 5px;
-  color: #5a5045;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 6px;
+  color: #8a8075;
   text-transform: uppercase;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 .time-sep {
   font-family: 'Cinzel', serif;
-  font-size: 60px;
+  font-size: 90px;
   font-weight: 900;
-  color: #8b1a1a;
-  text-shadow: 0 0 20px rgba(139, 26, 26, 0.6);
-  margin: 0 4px;
+  color: #b33030;
+  text-shadow: 0 0 25px rgba(180, 40, 40, 0.7);
+  margin: 0 8px;
   line-height: 1;
   align-self: flex-start;
-  padding-top: 6px;
+  padding-top: 10px;
 }
 
 #countdown-date {
-  font-size: 13px;
-  letter-spacing: 4px;
-  color: #4a4035;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 5px;
+  color: #6a6055;
   text-transform: uppercase;
 }
 
@@ -636,19 +641,20 @@ body {
 }
 
 .price-tier {
-  font-size: 11px;
-  letter-spacing: 5px;
-  color: #5a5045;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 6px;
+  color: #8a8075;
   text-transform: uppercase;
 }
 
 .price-amount {
   font-family: 'Cinzel', serif;
-  font-size: 42px;
+  font-size: 62px;
   font-weight: 900;
-  color: #d4b855;
-  text-shadow: 0 0 24px rgba(200, 168, 75, 0.6), 0 0 48px rgba(200, 168, 75, 0.25);
-  letter-spacing: 1px;
+  color: #ebd06a;
+  text-shadow: 0 0 30px rgba(235, 208, 106, 0.7), 0 0 60px rgba(235, 208, 106, 0.35);
+  letter-spacing: 2px;
   line-height: 1;
   transition: text-shadow 0.4s;
 }
@@ -658,18 +664,19 @@ body {
 }
 
 .price-name {
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  color: #e8ddd0;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #f5efe6;
   text-transform: uppercase;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
 .price-desc {
-  font-size: 12px;
+  font-size: 16px;
+  font-weight: 500;
   letter-spacing: 1px;
-  color: #6a6055;
+  color: #9a9080;
   text-align: center;
   line-height: 1.6;
   transition: color 0.4s;
@@ -698,30 +705,31 @@ body {
 
 #sponsors-label {
   text-align: center;
-  font-size: 12px;
-  letter-spacing: 6px;
-  color: #5a5048;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 8px;
+  color: #8a8075;
   text-transform: uppercase;
-  margin-bottom: 12px;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 16px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
 }
 
 #sponsors-grid {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 22px;
-  flex-wrap: nowrap;
+  gap: 25px;
+  flex-wrap: wrap; /* Permitir salto de línea para logos más grandes */
 }
 
 .sponsor-slot {
-  width: 120px;
-  height: 65px;
+  width: 170px;
+  height: 90px;
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: grayscale(80%) brightness(0.7);
-  opacity: 0.8;
+  filter: grayscale(40%) brightness(0.9);
+  opacity: 0.9;
   transition: filter 0.5s ease, opacity 0.5s ease, transform 0.3s ease;
   overflow: hidden;
 }
