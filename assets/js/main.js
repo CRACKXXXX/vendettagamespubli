@@ -1,10 +1,27 @@
 /* ═══════════════════════════════════════════════
    VENDETTA GAMES II — main.js
-   Countdown + Partículas de brasa
+   Escalado dinámico (letterboxing) + Countdown + Partículas
 ═══════════════════════════════════════════════ */
 
 (function () {
   'use strict';
+
+  /* ── ESCALADO DINÁMICO (LETTERBOXING) ────────── */
+
+  var DESIGN_W = 1920;
+  var DESIGN_H = 1080;
+
+  function scaleWrapper() {
+    var wrapper = document.getElementById('fivem-wrapper');
+    if (!wrapper) return;
+    var scaleX = window.innerWidth  / DESIGN_W;
+    var scaleY = window.innerHeight / DESIGN_H;
+    var scale  = Math.min(scaleX, scaleY);
+    wrapper.style.transform = 'scale(' + scale + ')';
+  }
+
+  scaleWrapper();
+  window.addEventListener('resize', scaleWrapper);
 
   /* ── CUENTA REGRESIVA ─────────────────────── */
 
@@ -81,6 +98,8 @@
   ];
 
   function createEmbers() {
+    var wrapper = document.getElementById('fivem-wrapper');
+    if (!wrapper) return;
     var frag = document.createDocumentFragment();
     for (var i = 0; i < emberData.length; i++) {
       var e = emberData[i];
@@ -100,7 +119,7 @@
       ].join(';');
       frag.appendChild(el);
     }
-    document.body.appendChild(frag);
+    wrapper.appendChild(frag);
   }
 
   createEmbers();
