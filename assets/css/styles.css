@@ -315,7 +315,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 36px 80px 0 80px;
+  padding: 20px 80px 0 80px;
 }
 
 /* ═══════════════════════════════════════════════
@@ -374,10 +374,10 @@ body {
 /* Título principal */
 #title-main {
   font-family: 'Cinzel Decorative', serif;
-  font-size: 135px;
+  font-size: 120px;
   font-weight: 700;
   line-height: 1;
-  letter-spacing: 12px;
+  letter-spacing: 10px;
   text-transform: uppercase;
   /* Shimmer sutil sobre el texto */
   background: linear-gradient(120deg,
@@ -401,10 +401,10 @@ body {
 /* Número romano (ahora inline dentro del título) */
 #title-roman {
   font-family: 'Cinzel Decorative', serif;
-  font-size: 140px;
+  font-size: 125px;
   font-weight: 700;
-  letter-spacing: 10px;
-  margin-left: 15px;
+  letter-spacing: 8px;
+  margin-left: 12px;
   /* Romper el background-clip del padre para tener color propio */
   -webkit-text-fill-color: #c93a3a;
   text-shadow: none;
@@ -413,7 +413,7 @@ body {
 
 /* Premio */
 #prize-block {
-  margin-top: 20px;
+  margin-top: 5px;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -432,9 +432,9 @@ body {
 
 #prize-amount {
   font-family: 'Cinzel', serif;
-  font-size: 100px;
+  font-size: 85px;
   font-weight: 900;
-  letter-spacing: 5px;
+  letter-spacing: 4px;
   color: #ebd06a;
   line-height: 1;
   text-shadow: 0 0 25px rgba(235, 208, 106, 0.7), 0 0 50px rgba(235, 208, 106, 0.4);
@@ -450,7 +450,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 26px;
+  gap: 12px;
   flex-shrink: 0;
   animation: fadeInUp 1s ease 0.7s both;
 }
@@ -461,7 +461,7 @@ body {
 }
 
 #location-text {
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 700;
   letter-spacing: 6px;
   color: #f5efe6;
@@ -471,16 +471,16 @@ body {
 
 #slots-text {
   display: inline-block;
-  font-size: 38px;
+  font-size: 32px;
   font-weight: 900;
-  letter-spacing: 6px;
+  letter-spacing: 5px;
   color: #ebd06a;
   text-shadow:
     0 0 28px rgba(235, 208, 106, 0.9),
     0 0 55px rgba(235, 208, 106, 0.6),
     0 3px 0 rgba(0, 0, 0, 0.9);
   text-transform: uppercase;
-  margin-top: 14px;
+  margin-top: 5px;
   padding: 12px 42px;
   border: 1px solid rgba(235, 208, 106, 0.5);
   background: rgba(235, 208, 106, 0.1);
@@ -520,7 +520,7 @@ body {
 
 .time-value {
   font-family: 'Cinzel', serif;
-  font-size: 130px;
+  font-size: 115px;
   font-weight: 900;
   line-height: 1;
   color: #ffffff;
@@ -548,7 +548,7 @@ body {
 
 .time-sep {
   font-family: 'Cinzel', serif;
-  font-size: 90px;
+  font-size: 80px;
   font-weight: 900;
   color: #b33030;
   text-shadow: 0 0 25px rgba(180, 40, 40, 0.7);
@@ -596,7 +596,7 @@ body {
   display: flex;
   align-items: stretch;
   gap: 0;
-  width: 940px;
+  width: 1400px;
 }
 
 .price-card {
@@ -605,7 +605,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 22px 20px;
+  padding: 15px 20px;
   position: relative;
   gap: 6px;
   transition: background 0.4s;
@@ -650,12 +650,13 @@ body {
 
 .price-amount {
   font-family: 'Cinzel', serif;
-  font-size: 62px;
+  font-size: 52px;
   font-weight: 900;
   color: #ebd06a;
   text-shadow: 0 0 30px rgba(235, 208, 106, 0.7), 0 0 60px rgba(235, 208, 106, 0.35);
   letter-spacing: 2px;
   line-height: 1;
+  white-space: nowrap; /* Evita que el $ salte de línea */
   transition: text-shadow 0.4s;
 }
 
@@ -664,7 +665,7 @@ body {
 }
 
 .price-name {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 800;
   letter-spacing: 4px;
   color: #f5efe6;
@@ -698,7 +699,7 @@ body {
       rgba(0, 0, 0, 0) 0%,
       rgba(0, 0, 0, 0.55) 30%,
       rgba(0, 0, 0, 0.9) 100%);
-  padding: 14px 40px 18px 40px;
+  padding: 10px 40px 10px 40px;
   border-top: 1px solid rgba(139, 26, 26, 0.18);
   animation: fadeIn 1.5s ease 1.2s both;
 }
@@ -718,13 +719,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 25px;
+  gap: 20px;
   flex-wrap: wrap; /* Permitir salto de línea para logos más grandes */
 }
 
 .sponsor-slot {
-  width: 170px;
-  height: 90px;
+  width: 135px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
