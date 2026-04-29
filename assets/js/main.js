@@ -68,8 +68,61 @@
   // Ejecutar en resize con throttle vía rAF
   window.addEventListener('resize', function () {
     if (rafId) cancelAnimationFrame(rafId);
-    rafId = requestAnimationFrame(applyScale);
+    rafId = requestAnimationFrame(function () {
+      applyScale();
+      updateDebug();
+    });
   });
+
+  /* ── PANEL DE DEBUG VISUAL (esquina superior izquierda) ── */
+  var debugEl = null;
+
+  function createDebugPanel() {
+    debugEl = document.createElement('div');
+    debugEl.id = 'vg2-debug';
+    debugEl.style.cssText = [
+      'position:fixed',
+      'top:8px',
+      'left:8px',
+      'z-index:99999',
+      'background:rgba(0,0,0,0.85)',
+      'color:#0f0',
+      'font-family:monospace',
+      'font-size:11px',
+      'padding:8px 12px',
+      'border:1px solid #0f0',
+      'border-radius:4px',
+      'line-height:1.5',
+      'pointer-events:none',
+      'white-space:pre'
+    ].join(';');
+    document.body.appendChild(debugEl);
+  }
+
+  function updateDebug() {
+    if (!debugEl) return;
+    var cw = document.documentElement.clientWidth;
+    var ch = document.documentElement.clientHeight;
+    var iw = window.innerWidth;
+    var ih = window.innerHeight;
+    var vp = getViewport();
+    var scale = Math.min(vp.w / DESIGN_W, vp.h / DESIGN_H);
+
+    debugEl.textContent =
+      '[VG2 v3] Debug Panel\n' +
+      'clientW/H:  ' + cw + ' x ' + ch + '\n' +
+      'innerW/H:   ' + iw + ' x ' + ih + '\n' +
+      'viewport:   ' + vp.w + ' x ' + vp.h + '\n' +
+      'scale:      ' + scale.toFixed(4) + '\n' +
+      'transform:  ' + (wrapper ? wrapper.style.transform : 'N/A');
+  }
+
+  createDebugPanel();
+  updateDebug();
+
+  // Actualizar debug cada segundo (por si cambia algo)
+  setInterval(updateDebug, 1000);
+
 
   /* ── SISTEMA DE TEST DE RESOLUCIONES ───────────
      Uso desde la consola del navegador (F12):
