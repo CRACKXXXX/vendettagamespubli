@@ -1,0 +1,621 @@
+/* ═══════════════════════════════════════════════
+   VENDETTA GAMES II — styles.css
+   Estética: Oscura · Elegante · Clandestina
+═══════════════════════════════════════════════ */
+
+/* ── RESET Y BASE ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 1920px;
+  height: 1080px;
+  min-width: 1920px;
+  min-height: 1080px;
+  max-width: 1920px;
+  max-height: 1080px;
+  overflow: hidden;
+  background: #000;
+  font-family: 'Cinzel', 'Georgia', serif;
+  color: #e8e0d0;
+  user-select: none;
+}
+
+/* ═══════════════════════════════════════════════
+   KEYFRAMES
+═══════════════════════════════════════════════ */
+
+/* Entrada general */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Parpadeo antiguo del título */
+@keyframes flicker {
+  0%, 93%, 100% { opacity: 1; }
+  94% { opacity: 0.88; }
+  95% { opacity: 1; }
+  97% { opacity: 0.82; }
+  98% { opacity: 1; }
+}
+
+/* Shimmer diagonal en el título */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Pulso rojo del diamante */
+@keyframes pulse-diamond {
+  0%, 100% { box-shadow: 0 0 8px #8b1a1a, 0 0 18px rgba(139,26,26,0.5); }
+  50%       { box-shadow: 0 0 18px #b32020, 0 0 38px rgba(139,26,26,0.75); }
+}
+
+/* Pulso dorado del premio */
+@keyframes gold-pulse {
+  0%, 100% { text-shadow: 0 0 18px rgba(200,168,75,0.55), 0 0 36px rgba(200,168,75,0.28), 1px 1px 0 #3d2800; }
+  50%       { text-shadow: 0 0 30px rgba(200,168,75,0.9),  0 0 60px rgba(200,168,75,0.5),  1px 1px 0 #3d2800; }
+}
+
+/* Pulso dorado de las plazas */
+@keyframes slots-pulse {
+  0%, 100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(200,168,75,0); }
+  50%       { transform: scale(1.02); box-shadow: 0 0 20px 4px rgba(200,168,75,0.2); }
+}
+
+/* Expansión de líneas ornamentales al cargar */
+@keyframes expand-line {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+
+/* Flip de números del contador */
+@keyframes num-flip {
+  0%   { transform: translateY(-8px) scaleY(0.6); opacity: 0; }
+  100% { transform: translateY(0)    scaleY(1);   opacity: 1; }
+}
+
+/* Partículas de brasa flotando */
+@keyframes ember-rise {
+  0%   { transform: translateY(0)    translateX(0)    scale(1);   opacity: 0; }
+  10%  { opacity: 0.7; }
+  60%  { opacity: 0.4; }
+  100% { transform: translateY(-320px) translateX(var(--drift)) scale(0.3); opacity: 0; }
+}
+
+/* Borde animado en card VIP */
+@keyframes border-glow {
+  0%, 100% { border-color: rgba(139,26,26,0.25); box-shadow: inset 0 0 0 rgba(139,26,26,0); }
+  50%       { border-color: rgba(139,26,26,0.65); box-shadow: inset 0 0 22px rgba(139,26,26,0.08); }
+}
+
+/* Línea de escaneo (scanline overlay) */
+@keyframes scanline-move {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(1080px); }
+}
+
+/* Expansión ornamental de divisor */
+@keyframes divider-expand {
+  from { width: 0; opacity: 0; }
+  to   { width: 600px; opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════
+   FONDO
+═══════════════════════════════════════════════ */
+
+#bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: url('../images/bg/background.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* Overlay negro ~82% */
+#bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+}
+
+/* Vignette radial */
+#bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center,
+    transparent 25%,
+    rgba(0,0,0,0.5) 62%,
+    rgba(0,0,0,0.94) 100%);
+}
+
+/* ── SCANLINE ── */
+#scanline {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0,0,0,0.04) 3px,
+    rgba(0,0,0,0.04) 4px
+  );
+  opacity: 0.6;
+}
+
+/* Barrido de línea de escaneo */
+#scanline::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(139,26,26,0.025) 50%,
+    transparent
+  );
+  animation: scanline-move 14s linear infinite;
+}
+
+/* ── PARTÍCULAS DE BRASA ── */
+.ember {
+  position: fixed;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, #c8500a 0%, #8b1a1a 60%, transparent 100%);
+  animation: ember-rise var(--duration) ease-in var(--delay) infinite;
+  width: var(--size);
+  height: var(--size);
+  bottom: var(--bottom);
+  left: var(--left);
+}
+
+/* ═══════════════════════════════════════════════
+   LAYOUT PRINCIPAL
+═══════════════════════════════════════════════ */
+
+#app {
+  position: relative;
+  z-index: 3;
+  width: 1920px;
+  height: 1080px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 36px 80px 0 80px;
+}
+
+/* ═══════════════════════════════════════════════
+   CABECERA
+═══════════════════════════════════════════════ */
+
+#header {
+  width: 100%;
+  text-align: center;
+  flex-shrink: 0;
+  animation: fadeInUp 1s ease both;
+}
+
+/* Ornamento superior */
+#ornament-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 14px;
+}
+
+.ornament-line {
+  width: 280px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #8b1a1a, transparent);
+  transform-origin: center;
+  animation: expand-line 1.4s ease both;
+}
+
+.ornament-line:last-child {
+  animation-delay: 0.1s;
+}
+
+.ornament-diamond {
+  width: 8px;
+  height: 8px;
+  background: #8b1a1a;
+  transform: rotate(45deg);
+  animation: pulse-diamond 3s ease-in-out infinite;
+}
+
+/* Subtítulo */
+#subtitle-pre {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 8px;
+  color: #8b1a1a;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  text-shadow: 0 0 18px rgba(139,26,26,0.6);
+  animation: fadeIn 1.2s ease 0.3s both;
+}
+
+/* Título principal */
+#title-main {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 110px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  /* Shimmer sutil sobre el texto */
+  background: linear-gradient(
+    120deg,
+    #f0e8d8 0%,
+    #f0e8d8 40%,
+    #fff8ee 48%,
+    #ffe8c0 52%,
+    #f0e8d8 60%,
+    #f0e8d8 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(0 0 40px rgba(139,26,26,0.35)) drop-shadow(2px 2px 0 #1a0a0a);
+  animation:
+    shimmer 8s linear infinite,
+    flicker 14s ease-in-out infinite;
+}
+
+/* Número romano */
+#title-roman {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 52px;
+  font-weight: 400;
+  letter-spacing: 30px;
+  color: #8b1a1a;
+  text-shadow: 0 0 30px rgba(139,26,26,0.7), 0 0 60px rgba(139,26,26,0.3);
+  margin-top: -8px;
+  animation: fadeIn 1s ease 0.6s both;
+}
+
+/* Premio */
+#prize-block {
+  margin-top: 20px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  animation: fadeInUp 1s ease 0.5s both;
+}
+
+#prize-label {
+  font-size: 13px;
+  letter-spacing: 6px;
+  color: #7a7060;
+  text-transform: uppercase;
+}
+
+#prize-amount {
+  font-family: 'Cinzel', serif;
+  font-size: 58px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: #c8a84b;
+  line-height: 1;
+  animation: gold-pulse 4s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════
+   BLOQUE CENTRAL
+═══════════════════════════════════════════════ */
+
+#center-block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  flex-shrink: 0;
+  animation: fadeInUp 1s ease 0.7s both;
+}
+
+/* Info localización */
+#info-location {
+  text-align: center;
+}
+
+#location-text {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 5px;
+  color: #d4cabb;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+  text-transform: uppercase;
+}
+
+#slots-text {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: #c8a84b;
+  text-shadow:
+    0 0 18px rgba(200,168,75,0.8),
+    0 0 36px rgba(200,168,75,0.4),
+    0 2px 0 rgba(0,0,0,0.9);
+  text-transform: uppercase;
+  margin-top: 10px;
+  padding: 8px 32px;
+  border: 1px solid rgba(200,168,75,0.35);
+  background: rgba(200,168,75,0.06);
+  animation: slots-pulse 3.5s ease-in-out infinite;
+}
+
+/* ── CUENTA REGRESIVA ── */
+#countdown-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+#countdown-title {
+  font-size: 12px;
+  letter-spacing: 7px;
+  color: #5a5045;
+  text-transform: uppercase;
+}
+
+#countdown {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.time-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+  overflow: hidden;
+}
+
+.time-value {
+  font-family: 'Cinzel', serif;
+  font-size: 78px;
+  font-weight: 900;
+  line-height: 1;
+  color: #f0e8d8;
+  letter-spacing: 2px;
+  text-shadow:
+    0 0 30px rgba(255,255,255,0.06),
+    1px 1px 0 #1a0a0a;
+  display: inline-block;
+  /* El JS añade la clase flip cuando cambia */
+}
+
+.time-value.flip {
+  animation: num-flip 0.25s ease both;
+}
+
+.time-label {
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: #5a5045;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.time-sep {
+  font-family: 'Cinzel', serif;
+  font-size: 60px;
+  font-weight: 900;
+  color: #8b1a1a;
+  text-shadow: 0 0 20px rgba(139,26,26,0.6);
+  margin: 0 4px;
+  line-height: 1;
+  align-self: flex-start;
+  padding-top: 6px;
+}
+
+#countdown-date {
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: #4a4035;
+  text-transform: uppercase;
+}
+
+/* ── DIVISOR ── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(139,26,26,0.4) 20%,
+    rgba(139,26,26,0.75) 50%,
+    rgba(139,26,26,0.4) 80%,
+    transparent);
+  position: relative;
+  animation: divider-expand 1.2s ease 1s both;
+}
+
+.divider::before {
+  content: '✦';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  color: #8b1a1a;
+  background: rgba(0,0,0,0.95);
+  padding: 0 14px;
+}
+
+/* ── PRECIOS ── */
+#prices {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  width: 940px;
+}
+
+.price-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 22px 20px;
+  position: relative;
+  gap: 6px;
+  transition: background 0.4s;
+}
+
+.price-card:hover {
+  background: rgba(200,168,75,0.04);
+}
+
+.price-card + .price-card {
+  border-left: 1px solid rgba(139,26,26,0.25);
+}
+
+/* Card destacada (VIP) */
+.price-card.featured {
+  border: 1px solid rgba(139,26,26,0.25);
+  background: rgba(139,26,26,0.06);
+  animation: border-glow 4s ease-in-out infinite;
+}
+
+.price-card.featured::before {
+  content: '★  DESTACADO  ★';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #c8a84b;
+  background: #060000;
+  padding: 2px 14px;
+  white-space: nowrap;
+}
+
+.price-tier {
+  font-size: 11px;
+  letter-spacing: 5px;
+  color: #5a5045;
+  text-transform: uppercase;
+}
+
+.price-amount {
+  font-family: 'Cinzel', serif;
+  font-size: 34px;
+  font-weight: 900;
+  color: #c8a84b;
+  text-shadow: 0 0 20px rgba(200,168,75,0.4);
+  letter-spacing: 1px;
+  line-height: 1;
+  transition: text-shadow 0.4s;
+}
+
+.price-card:hover .price-amount {
+  text-shadow: 0 0 30px rgba(200,168,75,0.7), 0 0 60px rgba(200,168,75,0.35);
+}
+
+.price-name {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #d4cabb;
+  text-transform: uppercase;
+}
+
+.price-desc {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #4a4035;
+  text-align: center;
+  line-height: 1.6;
+  transition: color 0.4s;
+}
+
+.price-card:hover .price-desc {
+  color: #6a6055;
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER — PATROCINADORES
+═══════════════════════════════════════════════ */
+
+#footer {
+  width: 1920px;
+  flex-shrink: 0;
+  margin-top: auto;
+  background: linear-gradient(180deg,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0.55) 30%,
+    rgba(0,0,0,0.9) 100%);
+  padding: 14px 40px 18px 40px;
+  border-top: 1px solid rgba(139,26,26,0.18);
+  animation: fadeIn 1.5s ease 1.2s both;
+}
+
+#sponsors-label {
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 6px;
+  color: #3a3028;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+#sponsors-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: nowrap;
+}
+
+.sponsor-slot {
+  width: 96px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: grayscale(100%) brightness(0.5);
+  opacity: 0.65;
+  transition: filter 0.5s ease, opacity 0.5s ease, transform 0.3s ease;
+  overflow: hidden;
+}
+
+.sponsor-slot:hover {
+  filter: grayscale(0%) brightness(0.9);
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.sponsor-slot img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
