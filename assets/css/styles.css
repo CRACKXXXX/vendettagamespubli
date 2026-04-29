@@ -4,13 +4,16 @@
 ═══════════════════════════════════════════════ */
 
 /* ── RESET Y BASE ── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -28,7 +31,7 @@ html, body {
 /* ── WRAPPER DE ESCALADO (LETTERBOXING) ── */
 #fivem-wrapper {
   width: 1920px;
-  height: 1080px;
+  - height: 1080px;
   position: relative;
   transform-origin: center center;
   overflow: hidden;
@@ -41,84 +44,189 @@ html, body {
 
 /* Entrada general */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* Parpadeo antiguo del título */
 @keyframes flicker {
-  0%, 93%, 100% { opacity: 1; }
-  94% { opacity: 0.88; }
-  95% { opacity: 1; }
-  97% { opacity: 0.82; }
-  98% { opacity: 1; }
+
+  0%,
+  93%,
+  100% {
+    opacity: 1;
+  }
+
+  94% {
+    opacity: 0.88;
+  }
+
+  95% {
+    opacity: 1;
+  }
+
+  97% {
+    opacity: 0.82;
+  }
+
+  98% {
+    opacity: 1;
+  }
 }
 
 /* Shimmer diagonal en el título */
 @keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
 }
 
 /* Pulso rojo del diamante */
 @keyframes pulse-diamond {
-  0%, 100% { box-shadow: 0 0 8px #8b1a1a, 0 0 18px rgba(139,26,26,0.5); }
-  50%       { box-shadow: 0 0 18px #b32020, 0 0 38px rgba(139,26,26,0.75); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 8px #8b1a1a, 0 0 18px rgba(139, 26, 26, 0.5);
+  }
+
+  50% {
+    box-shadow: 0 0 18px #b32020, 0 0 38px rgba(139, 26, 26, 0.75);
+  }
 }
 
 /* Pulso dorado del premio */
 @keyframes gold-pulse {
-  0%, 100% { text-shadow: 0 0 18px rgba(200,168,75,0.55), 0 0 36px rgba(200,168,75,0.28), 1px 1px 0 #3d2800; }
-  50%       { text-shadow: 0 0 30px rgba(200,168,75,0.9),  0 0 60px rgba(200,168,75,0.5),  1px 1px 0 #3d2800; }
+
+  0%,
+  100% {
+    text-shadow: 0 0 18px rgba(200, 168, 75, 0.55), 0 0 36px rgba(200, 168, 75, 0.28), 1px 1px 0 #3d2800;
+  }
+
+  50% {
+    text-shadow: 0 0 30px rgba(200, 168, 75, 0.9), 0 0 60px rgba(200, 168, 75, 0.5), 1px 1px 0 #3d2800;
+  }
 }
 
 /* Pulso dorado de las plazas */
 @keyframes slots-pulse {
-  0%, 100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(200,168,75,0); }
-  50%       { transform: scale(1.02); box-shadow: 0 0 20px 4px rgba(200,168,75,0.2); }
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(200, 168, 75, 0);
+  }
+
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px 4px rgba(200, 168, 75, 0.2);
+  }
 }
 
 /* Expansión de líneas ornamentales al cargar */
 @keyframes expand-line {
-  from { transform: scaleX(0); opacity: 0; }
-  to   { transform: scaleX(1); opacity: 1; }
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
 }
 
 /* Flip de números del contador */
 @keyframes num-flip {
-  0%   { transform: translateY(-8px) scaleY(0.6); opacity: 0; }
-  100% { transform: translateY(0)    scaleY(1);   opacity: 1; }
+  0% {
+    transform: translateY(-8px) scaleY(0.6);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0) scaleY(1);
+    opacity: 1;
+  }
 }
 
 /* Partículas de brasa flotando */
 @keyframes ember-rise {
-  0%   { transform: translateY(0)    translateX(0)    scale(1);   opacity: 0; }
-  10%  { opacity: 0.7; }
-  60%  { opacity: 0.4; }
-  100% { transform: translateY(-320px) translateX(var(--drift)) scale(0.3); opacity: 0; }
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.7;
+  }
+
+  60% {
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: translateY(-320px) translateX(var(--drift)) scale(0.3);
+    opacity: 0;
+  }
 }
 
 /* Borde animado en card VIP */
 @keyframes border-glow {
-  0%, 100% { border-color: rgba(139,26,26,0.25); box-shadow: inset 0 0 0 rgba(139,26,26,0); }
-  50%       { border-color: rgba(139,26,26,0.65); box-shadow: inset 0 0 22px rgba(139,26,26,0.08); }
+
+  0%,
+  100% {
+    border-color: rgba(139, 26, 26, 0.25);
+    box-shadow: inset 0 0 0 rgba(139, 26, 26, 0);
+  }
+
+  50% {
+    border-color: rgba(139, 26, 26, 0.65);
+    box-shadow: inset 0 0 22px rgba(139, 26, 26, 0.08);
+  }
 }
 
 /* Línea de escaneo (scanline overlay) */
 @keyframes scanline-move {
-  0%   { transform: translateY(-100%); }
-  100% { transform: translateY(1080px); }
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(1080px);
+  }
 }
 
 /* Expansión ornamental de divisor */
 @keyframes divider-expand {
-  from { width: 0; opacity: 0; }
-  to   { width: 600px; opacity: 1; }
+  from {
+    width: 0;
+    opacity: 0;
+  }
+
+  to {
+    width: 600px;
+    opacity: 1;
+  }
 }
 
 /* ═══════════════════════════════════════════════
@@ -149,9 +257,9 @@ html, body {
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse at center,
-    transparent 25%,
-    rgba(0,0,0,0.5) 62%,
-    rgba(0,0,0,0.94) 100%);
+      transparent 25%,
+      rgba(0, 0, 0, 0.5) 62%,
+      rgba(0, 0, 0, 0.94) 100%);
 }
 
 /* ── SCANLINE ── */
@@ -160,13 +268,11 @@ html, body {
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 3px,
-    rgba(0,0,0,0.04) 3px,
-    rgba(0,0,0,0.04) 4px
-  );
+  background: repeating-linear-gradient(to bottom,
+      transparent 0px,
+      transparent 3px,
+      rgba(0, 0, 0, 0.04) 3px,
+      rgba(0, 0, 0, 0.04) 4px);
   opacity: 0.6;
 }
 
@@ -174,14 +280,13 @@ html, body {
 #scanline::after {
   content: '';
   position: absolute;
-  left: 0; right: 0;
+  left: 0;
+  right: 0;
   height: 80px;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(139,26,26,0.025) 50%,
-    transparent
-  );
+  background: linear-gradient(to bottom,
+      transparent,
+      rgba(139, 26, 26, 0.025) 50%,
+      transparent);
   animation: scanline-move 14s linear infinite;
 }
 
@@ -264,7 +369,7 @@ html, body {
   color: #8b1a1a;
   text-transform: uppercase;
   margin-bottom: 8px;
-  text-shadow: 0 0 18px rgba(139,26,26,0.6);
+  text-shadow: 0 0 18px rgba(139, 26, 26, 0.6);
   animation: fadeIn 1.2s ease 0.3s both;
 }
 
@@ -277,21 +382,19 @@ html, body {
   letter-spacing: 10px;
   text-transform: uppercase;
   /* Shimmer sutil sobre el texto */
-  background: linear-gradient(
-    120deg,
-    #f0e8d8 0%,
-    #f0e8d8 40%,
-    #fff8ee 48%,
-    #ffe8c0 52%,
-    #f0e8d8 60%,
-    #f0e8d8 100%
-  );
+  background: linear-gradient(120deg,
+      #f0e8d8 0%,
+      #f0e8d8 40%,
+      #fff8ee 48%,
+      #ffe8c0 52%,
+      #f0e8d8 60%,
+      #f0e8d8 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-shadow: none;
-  filter: drop-shadow(0 0 40px rgba(139,26,26,0.35)) drop-shadow(2px 2px 0 #1a0a0a);
+  filter: drop-shadow(0 0 40px rgba(139, 26, 26, 0.35)) drop-shadow(2px 2px 0 #1a0a0a);
   animation:
     shimmer 8s linear infinite,
     flicker 14s ease-in-out infinite;
@@ -304,7 +407,7 @@ html, body {
   font-weight: 400;
   letter-spacing: 30px;
   color: #8b1a1a;
-  text-shadow: 0 0 30px rgba(139,26,26,0.7), 0 0 60px rgba(139,26,26,0.3);
+  text-shadow: 0 0 30px rgba(139, 26, 26, 0.7), 0 0 60px rgba(139, 26, 26, 0.3);
   margin-top: -8px;
   animation: fadeIn 1s ease 0.6s both;
 }
@@ -360,7 +463,7 @@ html, body {
   font-weight: 600;
   letter-spacing: 5px;
   color: #d4cabb;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
   text-transform: uppercase;
 }
 
@@ -371,14 +474,14 @@ html, body {
   letter-spacing: 5px;
   color: #c8a84b;
   text-shadow:
-    0 0 18px rgba(200,168,75,0.8),
-    0 0 36px rgba(200,168,75,0.4),
-    0 2px 0 rgba(0,0,0,0.9);
+    0 0 18px rgba(200, 168, 75, 0.8),
+    0 0 36px rgba(200, 168, 75, 0.4),
+    0 2px 0 rgba(0, 0, 0, 0.9);
   text-transform: uppercase;
   margin-top: 10px;
   padding: 8px 32px;
-  border: 1px solid rgba(200,168,75,0.35);
-  background: rgba(200,168,75,0.06);
+  border: 1px solid rgba(200, 168, 75, 0.35);
+  background: rgba(200, 168, 75, 0.06);
   animation: slots-pulse 3.5s ease-in-out infinite;
 }
 
@@ -419,7 +522,7 @@ html, body {
   color: #f0e8d8;
   letter-spacing: 2px;
   text-shadow:
-    0 0 30px rgba(255,255,255,0.06),
+    0 0 30px rgba(255, 255, 255, 0.06),
     1px 1px 0 #1a0a0a;
   display: inline-block;
   /* El JS añade la clase flip cuando cambia */
@@ -442,7 +545,7 @@ html, body {
   font-size: 60px;
   font-weight: 900;
   color: #8b1a1a;
-  text-shadow: 0 0 20px rgba(139,26,26,0.6);
+  text-shadow: 0 0 20px rgba(139, 26, 26, 0.6);
   margin: 0 4px;
   line-height: 1;
   align-self: flex-start;
@@ -460,11 +563,11 @@ html, body {
 .divider {
   height: 1px;
   background: linear-gradient(90deg,
-    transparent,
-    rgba(139,26,26,0.4) 20%,
-    rgba(139,26,26,0.75) 50%,
-    rgba(139,26,26,0.4) 80%,
-    transparent);
+      transparent,
+      rgba(139, 26, 26, 0.4) 20%,
+      rgba(139, 26, 26, 0.75) 50%,
+      rgba(139, 26, 26, 0.4) 80%,
+      transparent);
   position: relative;
   animation: divider-expand 1.2s ease 1s both;
 }
@@ -477,7 +580,7 @@ html, body {
   transform: translate(-50%, -50%);
   font-size: 12px;
   color: #8b1a1a;
-  background: rgba(0,0,0,0.95);
+  background: rgba(0, 0, 0, 0.95);
   padding: 0 14px;
 }
 
@@ -502,17 +605,17 @@ html, body {
 }
 
 .price-card:hover {
-  background: rgba(200,168,75,0.04);
+  background: rgba(200, 168, 75, 0.04);
 }
 
-.price-card + .price-card {
-  border-left: 1px solid rgba(139,26,26,0.25);
+.price-card+.price-card {
+  border-left: 1px solid rgba(139, 26, 26, 0.25);
 }
 
 /* Card destacada (VIP) */
 .price-card.featured {
-  border: 1px solid rgba(139,26,26,0.25);
-  background: rgba(139,26,26,0.06);
+  border: 1px solid rgba(139, 26, 26, 0.25);
+  background: rgba(139, 26, 26, 0.06);
   animation: border-glow 4s ease-in-out infinite;
 }
 
@@ -542,14 +645,14 @@ html, body {
   font-size: 34px;
   font-weight: 900;
   color: #c8a84b;
-  text-shadow: 0 0 20px rgba(200,168,75,0.4);
+  text-shadow: 0 0 20px rgba(200, 168, 75, 0.4);
   letter-spacing: 1px;
   line-height: 1;
   transition: text-shadow 0.4s;
 }
 
 .price-card:hover .price-amount {
-  text-shadow: 0 0 30px rgba(200,168,75,0.7), 0 0 60px rgba(200,168,75,0.35);
+  text-shadow: 0 0 30px rgba(200, 168, 75, 0.7), 0 0 60px rgba(200, 168, 75, 0.35);
 }
 
 .price-name {
@@ -582,11 +685,11 @@ html, body {
   flex-shrink: 0;
   margin-top: auto;
   background: linear-gradient(180deg,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,0.55) 30%,
-    rgba(0,0,0,0.9) 100%);
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.55) 30%,
+      rgba(0, 0, 0, 0.9) 100%);
   padding: 14px 40px 18px 40px;
-  border-top: 1px solid rgba(139,26,26,0.18);
+  border-top: 1px solid rgba(139, 26, 26, 0.18);
   animation: fadeIn 1.5s ease 1.2s both;
 }
 

@@ -1,6 +1,12 @@
 /* ═══════════════════════════════════════════════
    VENDETTA GAMES II — main.js
    Escalado dinámico (letterboxing) + Countdown + Partículas
+   ─────────────────────────────────────────────
+   Técnica elegida: transform: scale()
+   ─ GPU-accelerated (compositor thread)
+   ─ No altera layout / document flow
+   ─ Estándar CSS → comportamiento predecible en CEF
+   ─ translateZ(0) fuerza capa de composición (antiblur)
 ═══════════════════════════════════════════════ */
 
 (function () {
@@ -10,18 +16,72 @@
 
   var DESIGN_W = 1920;
   var DESIGN_H = 1080;
+  var wrapper  = null;
+  var rafId    = 0;
 
-  function scaleWrapper() {
-    var wrapper = document.getElementById('fivem-wrapper');
+  function applyScale() {
+    if (!wrapper) wrapper = document.getElementById('fivem-wrapper');
     if (!wrapper) return;
-    var scaleX = window.innerWidth  / DESIGN_W;
-    var scaleY = window.innerHeight / DESIGN_H;
-    var scale  = Math.min(scaleX, scaleY);
-    wrapper.style.transform = 'scale(' + scale + ')';
+
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+
+    // Letterbox: escala al máximo sin deformar ni recortar
+    var scale = Math.min(vw / DESIGN_W, vh / DESIGN_H);
+
+    // Combinar scale + translateZ(0) para mantener capa GPU activa
+    wrapper.style.transform = 'scale(' + scale + ') translateZ(0)';
   }
 
-  scaleWrapper();
-  window.addEventListener('resize', scaleWrapper);
+  // Ejecutar al cargar
+  applyScale();
+
+  // Ejecutar en resize con throttle vía rAF (evita reflows en CEF)
+  window.addEventListener('resize', function () {
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(applyScale);
+  });
+
+  /* ── SISTEMA DE TEST DE RESOLUCIONES ───────────
+     Uso desde la consola del navegador:
+       testRes(1280, 720)    → simula una TV 720p
+       testRes(1920, 1080)   → simula 1080p (nativo)
+       testRes(2560, 1440)   → simula 1440p
+       testRes(800, 600)     → simula 4:3 antiguo
+       testRes(3440, 1440)   → simula ultrawide 21:9
+       testRes()             → restaura al tamaño real de la ventana
+  ────────────────────────────────────────────── */
+  window.testRes = function (w, h) {
+    if (!wrapper) wrapper = document.getElementById('fivem-wrapper');
+    if (!wrapper) return;
+
+    if (!w || !h) {
+      // Restaurar al viewport real
+      document.body.style.width  = '';
+      document.body.style.height = '';
+      document.body.style.maxWidth  = '';
+      document.body.style.maxHeight = '';
+      applyScale();
+      console.log('[VG2 Test] Restaurado al tamaño real: ' + window.innerWidth + 'x' + window.innerHeight);
+      return;
+    }
+
+    // Forzar body al tamaño simulado
+    document.body.style.width  = w + 'px';
+    document.body.style.height = h + 'px';
+    document.body.style.maxWidth  = w + 'px';
+    document.body.style.maxHeight = h + 'px';
+
+    var scale = Math.min(w / DESIGN_W, h / DESIGN_H);
+    wrapper.style.transform = 'scale(' + scale + ') translateZ(0)';
+
+    console.log(
+      '[VG2 Test] Simulando ' + w + 'x' + h +
+      ' | Ratio: ' + (w / h).toFixed(2) +
+      ' | Scale: ' + scale.toFixed(4)
+    );
+  };
+
 
   /* ── CUENTA REGRESIVA ─────────────────────── */
 
