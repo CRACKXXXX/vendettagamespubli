@@ -12,73 +12,112 @@
 (function () {
   'use strict';
 
-  /* ── ESCALADO DINÁMICO (LETTERBOXING) ────────── */
+  /* ── ESCALADO DINÁMICO (LETTERBOXING DUI/NUI) ────── */
+  /*
+     Problema: En DUI de FiveM (TVs in-game), window.innerWidth
+     puede devolver la resolución del monitor del jugador en vez
+     de la resolución real del surface DUI. Esto hace que
+     scale = 1.0 y no se escala nada → contenido recortado.
+
+     Solución: Usar document.documentElement.clientWidth/Height
+     que reporta el viewport CSS real del browser surface.
+     Además, transform-origin: 0 0 con translate() para centrar.
+  */
 
   var DESIGN_W = 1920;
   var DESIGN_H = 1080;
   var wrapper  = null;
   var rafId    = 0;
 
+  // Detección robusta del viewport real del DUI
+  function getViewport() {
+    // clientWidth/Height del <html> → viewport CSS real (fiable en DUI)
+    var cw = document.documentElement.clientWidth;
+    var ch = document.documentElement.clientHeight;
+
+    // Fallback a window.innerWidth si clientWidth devuelve 0
+    var w = cw > 0 ? cw : (window.innerWidth  || DESIGN_W);
+    var h = ch > 0 ? ch : (window.innerHeight || DESIGN_H);
+
+    return { w: w, h: h };
+  }
+
   function applyScale() {
     if (!wrapper) wrapper = document.getElementById('fivem-wrapper');
     if (!wrapper) return;
 
-    var vw = window.innerWidth;
-    var vh = window.innerHeight;
+    var vp = getViewport();
 
-    // Letterbox: escala al máximo sin deformar ni recortar
-    var scale = Math.min(vw / DESIGN_W, vh / DESIGN_H);
+    // Letterbox: escalar al máximo sin deformar ni recortar
+    var scale = Math.min(vp.w / DESIGN_W, vp.h / DESIGN_H);
 
-    // Combinar scale + translateZ(0) para mantener capa GPU activa
-    wrapper.style.transform = 'scale(' + scale + ') translateZ(0)';
+    // Calcular offset para centrar (letterbox negro alrededor)
+    var scaledW = DESIGN_W * scale;
+    var scaledH = DESIGN_H * scale;
+    var offsetX = (vp.w - scaledW) / 2;
+    var offsetY = (vp.h - scaledH) / 2;
+
+    // translate() centra + scale() escala — origin es 0,0
+    wrapper.style.transform =
+      'translate(' + offsetX + 'px,' + offsetY + 'px) scale(' + scale + ')';
   }
 
   // Ejecutar al cargar
   applyScale();
 
-  // Ejecutar en resize con throttle vía rAF (evita reflows en CEF)
+  // Ejecutar en resize con throttle vía rAF
   window.addEventListener('resize', function () {
     if (rafId) cancelAnimationFrame(rafId);
     rafId = requestAnimationFrame(applyScale);
   });
 
   /* ── SISTEMA DE TEST DE RESOLUCIONES ───────────
-     Uso desde la consola del navegador:
-       testRes(1280, 720)    → simula una TV 720p
-       testRes(1920, 1080)   → simula 1080p (nativo)
-       testRes(2560, 1440)   → simula 1440p
-       testRes(800, 600)     → simula 4:3 antiguo
-       testRes(3440, 1440)   → simula ultrawide 21:9
-       testRes()             → restaura al tamaño real de la ventana
+     Uso desde la consola del navegador (F12):
+       testRes(1280, 720)    → simula TV 720p
+       testRes(1920, 1080)   → nativo (scale = 1)
+       testRes(800, 600)     → TV 4:3 antiguo
+       testRes(512, 288)     → DUI típico FiveM TV
+       testRes(3440, 1440)   → ultrawide 21:9
+       testRes()             → restaurar al viewport real
   ────────────────────────────────────────────── */
   window.testRes = function (w, h) {
     if (!wrapper) wrapper = document.getElementById('fivem-wrapper');
     if (!wrapper) return;
 
+    var root = document.documentElement;
+
     if (!w || !h) {
-      // Restaurar al viewport real
-      document.body.style.width  = '';
-      document.body.style.height = '';
-      document.body.style.maxWidth  = '';
-      document.body.style.maxHeight = '';
+      // Restaurar
+      root.style.width  = '';
+      root.style.height = '';
+      root.style.maxWidth  = '';
+      root.style.maxHeight = '';
       applyScale();
-      console.log('[VG2 Test] Restaurado al tamaño real: ' + window.innerWidth + 'x' + window.innerHeight);
+      var vp = getViewport();
+      console.log('[VG2] Restaurado → ' + vp.w + 'x' + vp.h);
       return;
     }
 
-    // Forzar body al tamaño simulado
-    document.body.style.width  = w + 'px';
-    document.body.style.height = h + 'px';
-    document.body.style.maxWidth  = w + 'px';
-    document.body.style.maxHeight = h + 'px';
+    // Forzar <html> al tamaño simulado
+    root.style.width  = w + 'px';
+    root.style.height = h + 'px';
+    root.style.maxWidth  = w + 'px';
+    root.style.maxHeight = h + 'px';
 
     var scale = Math.min(w / DESIGN_W, h / DESIGN_H);
-    wrapper.style.transform = 'scale(' + scale + ') translateZ(0)';
+    var scaledW = DESIGN_W * scale;
+    var scaledH = DESIGN_H * scale;
+    var offsetX = (w - scaledW) / 2;
+    var offsetY = (h - scaledH) / 2;
+
+    wrapper.style.transform =
+      'translate(' + offsetX + 'px,' + offsetY + 'px) scale(' + scale + ')';
 
     console.log(
-      '[VG2 Test] Simulando ' + w + 'x' + h +
+      '[VG2] Simulando ' + w + 'x' + h +
       ' | Ratio: ' + (w / h).toFixed(2) +
-      ' | Scale: ' + scale.toFixed(4)
+      ' | Scale: ' + scale.toFixed(4) +
+      ' | Offset: ' + offsetX.toFixed(0) + ',' + offsetY.toFixed(0)
     );
   };
 
