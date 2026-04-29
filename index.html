@@ -132,5 +132,24 @@
   </div>
 
   <script src="assets/js/main.js"></script>
+
+  <!-- Firebase Analytics (carga diferida, no bloquea el render) -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
+    import { getAnalytics }  from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js';
+
+    const firebaseConfig = {
+      apiKey:            "AIzaSyBw4Ry7JIzEcPf2zBwCtxm6ur--ktVVye4",
+      authDomain:        "vendettagamespubli.firebaseapp.com",
+      projectId:         "vendettagamespubli",
+      storageBucket:     "vendettagamespubli.firebasestorage.app",
+      messagingSenderId: "636594741674",
+      appId:             "1:636594741674:web:d9b3b0b4621d3e3c090bd3",
+      measurementId:     "G-TXX8JK46N4"
+    };
+
+    const app       = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
 </body>
 </html>
