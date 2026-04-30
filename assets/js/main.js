@@ -117,11 +117,11 @@
       'transform:  ' + (wrapper ? wrapper.style.transform : 'N/A');
   }
 
-  createDebugPanel();
-  updateDebug();
+  // createDebugPanel();
+  // updateDebug();
 
   // Actualizar debug cada segundo (por si cambia algo)
-  setInterval(updateDebug, 1000);
+  // setInterval(updateDebug, 1000);
 
 
   /* ── SISTEMA DE TEST DE RESOLUCIONES ───────────

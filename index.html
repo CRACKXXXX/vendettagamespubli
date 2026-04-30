@@ -14,7 +14,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=3">
+  <link rel="stylesheet" href="assets/css/styles.css?v=9">
 </head>
 
 <body>
@@ -32,119 +32,123 @@
     <!-- ── APLICACIÓN ── -->
     <div id="app">
 
-      <!-- ── CABECERA ── -->
-      <header id="header">
-        <div id="ornament-top">
-          <div class="ornament-line"></div>
-          <div class="ornament-diamond"></div>
-          <div class="ornament-line"></div>
-        </div>
-        <div id="subtitle-pre">Temporada II &nbsp;·&nbsp; Evento</div>
-        <div id="title-main">Vendetta Games <span id="title-roman">II</span></div>
-        <div id="prize-block">
-          <div id="prize-label">Premio Principal</div>
-          <div id="prize-amount">200.000 $</div>
-        </div>
-      </header>
+      <!-- ── BARRA LATERAL IZQUIERDA ── -->
+      <aside id="sponsors-left" class="sponsors-sidebar">
+        <div class="sponsors-label-side">Patrocinadores</div>
+        <div class="sponsor-slot"><img src="assets/images/sponsors/bussines.png" alt="Patrocinador 1"></div>
+        <div class="sponsor-slot"><img src="assets/images/sponsors/bussines2.png" alt="Patrocinador 2"></div>
+        <div class="sponsor-slot"><img src="assets/images/sponsors/bussines3.png" alt="Patrocinador 3"></div>
+        <div class="sponsor-slot"><img src="assets/images/sponsors/bussines4.png" alt="Patrocinador 4"></div>
+        <div class="sponsor-slot"><img src="assets/images/sponsors/bussines5.png" alt="Patrocinador 5"></div>
+        <div class="sponsor-slot"><img src="assets/images/sponsors/bussines6.png" alt="Patrocinador 6"></div>
+        <div class="sponsor-slot"><img src="assets/images/sponsors/bussines7.png" alt="Patrocinador 7"></div>
+        <div class="sponsor-slot"><img src="assets/images/sponsors/bussines8.png" alt="Patrocinador 8"></div>
+      </aside>
 
-      <!-- ── BLOQUE CENTRAL ── -->
-      <main id="center-block">
-
-        <!-- Localización e inscripciones -->
-        <div id="info-location">
-          <div id="location-text">Inscripciones en Papa Dom's &nbsp;|&nbsp; Nova Events</div>
-          <div id="slots-text">◈&nbsp; 27 Plazas Disponibles &nbsp;◈</div>
-        </div>
-
-        <!-- Cuenta regresiva -->
-        <div id="countdown-wrapper">
-          <div id="countdown-title">El evento comienza en</div>
-          <div id="countdown">
-            <div class="time-unit">
-              <div class="time-value" id="cd-days">00</div>
-              <div class="time-label">Días</div>
-            </div>
-            <div class="time-sep">|</div>
-            <div class="time-unit">
-              <div class="time-value" id="cd-hours">00</div>
-              <div class="time-label">Horas</div>
-            </div>
-            <div class="time-sep">|</div>
-            <div class="time-unit">
-              <div class="time-value" id="cd-mins">00</div>
-              <div class="time-label">Minutos</div>
-            </div>
-            <div class="time-sep">|</div>
-            <div class="time-unit">
-              <div class="time-value" id="cd-secs">00</div>
-              <div class="time-label">Segundos</div>
-            </div>
+      <!-- ── CONTENIDO PRINCIPAL ── -->
+      <main id="main-content">
+        <!-- ── CABECERA ── -->
+        <header id="header">
+          <div id="ornament-top">
+            <div class="ornament-line"></div>
+            <div class="ornament-diamond"></div>
+            <div class="ornament-line"></div>
           </div>
-          <div id="countdown-date">16 de Mayo de 2026</div>
-        </div>
+          <div id="subtitle-pre">Temporada II &nbsp;·&nbsp; Evento</div>
+          <div id="title-main">Vendetta Games <span id="title-roman">II</span></div>
+          <div id="prize-block">
+            <div id="prize-label">Premio Principal</div>
+            <div id="prize-amount">200.000 $</div>
+          </div>
+        </header>
 
-        <!-- Divisor ornamental -->
-        <div class="divider"></div>
-
-        <!-- Precios -->
-        <div id="prices">
-
-          <div class="price-card">
-            <div class="price-tier">Entrada Estándar</div>
-            <div class="price-amount">5.000 $</div>
-            <div class="price-name">Inscripción Jugador</div>
-            <div class="price-desc">Participas como jugador<br>en el evento</div>
+        <!-- ── BLOQUE CENTRAL ── -->
+        <div id="center-block">
+          <!-- Localización e inscripciones -->
+          <div id="info-location">
+            <div id="location-text">Inscripciones en Papa Dom's &nbsp;|&nbsp; Nova Events</div>
+            <div id="slots-text">◈&nbsp; 27 Plazas Disponibles &nbsp;◈</div>
           </div>
 
-          <div class="price-card featured">
-            <div class="price-tier">Acceso Premium</div>
-            <div class="price-amount">7.500 $</div>
-            <div class="price-name">Pack VIP</div>
-            <div class="price-desc">No participas como jugador.<br>Eres observador exclusivo<br>del evento al estilo VIP
+          <!-- Cuenta regresiva -->
+          <div id="countdown-wrapper">
+            <div id="countdown-title">El evento comienza en</div>
+            <div id="countdown">
+              <div class="time-unit">
+                <div class="time-value" id="cd-days">00</div>
+                <div class="time-label">Días</div>
+              </div>
+              <div class="time-sep">|</div>
+              <div class="time-unit">
+                <div class="time-value" id="cd-hours">00</div>
+                <div class="time-label">Horas</div>
+              </div>
+              <div class="time-sep">|</div>
+              <div class="time-unit">
+                <div class="time-value" id="cd-mins">00</div>
+                <div class="time-label">Minutos</div>
+              </div>
+              <div class="time-sep">|</div>
+              <div class="time-unit">
+                <div class="time-value" id="cd-secs">00</div>
+                <div class="time-label">Segundos</div>
+              </div>
             </div>
+            <div id="countdown-date">16 de Mayo de 2026</div>
           </div>
 
-          <div class="price-card">
-            <div class="price-tier">Experiencia Completa</div>
-            <div class="price-amount">10.000 $</div>
-            <div class="price-name">Pack Completo</div>
-            <div class="price-desc">Juegas como participante y,<br>si eres eliminado, continúas<br>como observador VIP
-            </div>
-          </div>
+          <!-- Divisor ornamental -->
+          <div class="divider"></div>
 
+          <!-- Precios -->
+          <div id="prices">
+
+            <div class="price-card">
+              <div class="price-tier">Entrada Estándar</div>
+              <div class="price-amount">5.000 $</div>
+              <div class="price-name">Inscripción Jugador</div>
+              <div class="price-desc">Participas como jugador<br>en el evento</div>
+            </div>
+
+            <div class="price-card featured">
+              <div class="price-tier">Acceso Premium</div>
+              <div class="price-amount">7.500 $</div>
+              <div class="price-name">Pack VIP</div>
+              <div class="price-desc">No participas como jugador.<br>Eres observador exclusivo<br>del evento al estilo VIP
+              </div>
+            </div>
+
+            <div class="price-card">
+              <div class="price-tier">Experiencia Completa</div>
+              <div class="price-amount">10.000 $</div>
+              <div class="price-name">Pack Completo</div>
+              <div class="price-desc">Juegas como participante y,<br>si eres eliminado, continúas<br>como observador VIP
+              </div>
+            </div>
+
+          </div>
         </div>
-
       </main>
 
-      <!-- ── FOOTER PATROCINADORES ── -->
-      <footer id="footer">
-        <div id="sponsors-label">Patrocinadores Oficiales</div>
-        <div id="sponsors-grid">
-          <div class="sponsor-slot"><img src="assets/images/sponsors/bussines.png" alt="Patrocinador 1"></div>
-          <div class="sponsor-slot"><img src="assets/images/sponsors/bussines2.png" alt="Patrocinador 2"></div>
-          <div class="sponsor-slot"><img src="assets/images/sponsors/bussines3.png" alt="Patrocinador 3"></div>
-          <div class="sponsor-slot"><img src="assets/images/sponsors/bussines4.png" alt="Patrocinador 4"></div>
-          <div class="sponsor-slot"><img src="assets/images/sponsors/bussines5.png" alt="Patrocinador 5"></div>
-          <div class="sponsor-slot"><img src="assets/images/sponsors/bussines6.png" alt="Patrocinador 6"></div>
-          <div class="sponsor-slot"><img src="assets/images/sponsors/bussines7.png" alt="Patrocinador 7"></div>
-          <div class="sponsor-slot"><img src="assets/images/sponsors/bussines8.png" alt="Patrocinador 8"></div>
-          <div class="sponsor-slot"><img src="assets/images/sponsors/bussines9.png" alt="Patrocinador 9"></div>
-          <div class="sponsor-slot"><img src="assets/images/sponsors/bussines10.png" alt="Patrocinador 10"></div>
-          <div class="sponsor-slot"><img src="assets/images/sponsors/bussines11.png" alt="Patrocinador 11"></div>
-          <div class="sponsor-slot"><img src="assets/images/sponsors/bussines12.png" alt="Patrocinador 12"></div>
-          <div class="sponsor-slot"><img src="assets/images/sponsors/bussines13.png" alt="Patrocinador 13"></div>
-          <div class="sponsor-slot"><img src="assets/images/sponsors/bussines14.png" alt="Patrocinador 14"></div>
-          <div class="sponsor-slot"><img src="assets/images/sponsors/bussines15.png" alt="Patrocinador 15"></div>
-          <div class="sponsor-slot"><img src="assets/images/sponsors/bussines16.png" alt="Patrocinador 16"></div>
-          <div class="sponsor-slot"><img src="assets/images/sponsors/bussines17.png" alt="Patrocinador 17"></div>
-        </div>
-      </footer>
+      <!-- ── BARRA LATERAL DERECHA ── -->
+      <aside id="sponsors-right" class="sponsors-sidebar">
+        <div class="sponsors-label-side">Patrocinadores</div>
+        <div class="sponsor-slot"><img src="assets/images/sponsors/bussines9.png" alt="Patrocinador 9"></div>
+        <div class="sponsor-slot"><img src="assets/images/sponsors/bussines10.png" alt="Patrocinador 10"></div>
+        <div class="sponsor-slot"><img src="assets/images/sponsors/bussines11.png" alt="Patrocinador 11"></div>
+        <div class="sponsor-slot"><img src="assets/images/sponsors/bussines12.png" alt="Patrocinador 12"></div>
+        <div class="sponsor-slot"><img src="assets/images/sponsors/bussines13.png" alt="Patrocinador 13"></div>
+        <div class="sponsor-slot"><img src="assets/images/sponsors/bussines14.png" alt="Patrocinador 14"></div>
+        <div class="sponsor-slot"><img src="assets/images/sponsors/bussines15.png" alt="Patrocinador 15"></div>
+        <div class="sponsor-slot"><img src="assets/images/sponsors/bussines16.png" alt="Patrocinador 16"></div>
+        <div class="sponsor-slot"><img src="assets/images/sponsors/bussines17.png" alt="Patrocinador 17"></div>
+      </aside>
 
     </div>
 
   </div><!-- /#fivem-wrapper -->
 
-  <script src="assets/js/main.js?v=3"></script>
+  <script src="assets/js/main.js?v=8"></script>
 
   <!-- Firebase Analytics (carga diferida, no bloquea el render) -->
   <script type="module">
